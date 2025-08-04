@@ -16,8 +16,8 @@ public class OpenRouterService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Value("${openrouter.api.key}")
-    private String apiKey;
+    private final String apiKey = System.getenv("OPENROUTER_API_KEY");
+
 
     public String askAi(String userPrompt) {
         String url = "https://openrouter.ai/api/v1/chat/completions";
