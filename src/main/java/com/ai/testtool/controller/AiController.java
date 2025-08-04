@@ -20,7 +20,13 @@ public class AiController {
 
     @PostMapping("/generate-test")
     public String generateTest(@RequestBody String scenario) {
-        return openRouterService.askAi("Write a Selenium Java TestNG test case for: " + scenario);
+    	 try {
+    	        System.out.println("Received prompt: " + scenario);
+    	        return openRouterService.askAi("Write a Selenium Java TestNG test case for: " + scenario);
+    	    } catch (Exception e) {
+    	        e.printStackTrace(); // print error to logs
+    	        return "Error: " + e.getMessage();
+    	    }
     }
 
     @PostMapping("/classify-bug")
